@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ENM JWT AUTH</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/bootstrap-theme.min.css">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <div id="app"></div>
+
+        <script src="js/jquery-3.1.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="main.js"></script>
+        <script>
+            var TOKEN_KEY = "token"
+
+            var token = localStorage.getItem(TOKEN_KEY);
+            var app = Elm.Main.fullscreen({ token: token });
+            app.ports.saveToken.subscribe(function(token){
+                localStorage.setItem(TOKEN_KEY, token);
+            })
+            app.ports.deleteToken.subscribe(function(token){
+                localStorage.removeItem(TOKEN_KEY, token);
+            })
+        </script>
+    </body>
+
+</html>
